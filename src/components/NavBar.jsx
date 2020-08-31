@@ -2,7 +2,7 @@ import React from "react";
 
 function NavBar(props) {
   return (
-    <div className="flex items-center mx-2 my-4 text-charcoal w-screen">
+    <div className="flex items-center mx-2 mb-4 text-charcoal">
       <svg
         viewBox="0 0 20 20"
         fill="currentColor"

@@ -21,6 +21,7 @@ function Home() {
     { day: "KAM", date: 20 },
     { day: "JUM", date: 21 },
     { day: "SAB", date: 22 },
+    { day: "MIN", date: 23 },
   ];
 
   const menu = [
@@ -52,7 +53,7 @@ function Home() {
 
   return (
     <div className="font-body">
-      <div className="top-0 fixed bg-white">
+      <div className="top-0 pt-4 block sticky topbar opacity-100 bg-white">
         <NavBar setModal={(e) => setOpenModal(e)} />
         <div className="ml-4 mt-6 mb-2 flex overflow-x-auto overflow-y-hidden text-center">
           {days.map((el, i) => (
@@ -75,7 +76,7 @@ function Home() {
         <hr className="bg-cultured" />
       </div>
       {/* lunch and dinner button section */}
-      <div className="mx-4 mt-36 mb-2 grid grid-cols-12">
+      <div className="mx-4 mt-4 mb-2 grid grid-cols-12">
         <button
           className={`col-span-6 py-2 focus:outline-none radius-first ${
             lunch
