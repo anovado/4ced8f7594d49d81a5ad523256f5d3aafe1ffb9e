@@ -2,6 +2,13 @@
 
 @tailwind base;
 @tailwind components;
+.date-selector {
+  @apply ml-4 mt-6 mb-2 flex overflow-x-auto overflow-y-hidden text-center;
+}
+
+.date-circle {
+  @apply rounded-full py-2 px-3;
+}
 
 @tailwind utilities;
 .radius-first {
@@ -60,10 +67,8 @@
 }
 
 .topbar {
-  /* transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000; */
   -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
 }

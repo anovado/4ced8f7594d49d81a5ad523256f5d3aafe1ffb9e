@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import NavBar from "../components/NavBar";
+import LunchDinner from "../components/LunchDinner";
+import Menu from "../components/Menu";
+import Cart from "../components/Cart";
+import DateSelector from "../components/DateSelector";
 
 function Home() {
   const [lunch, setLunch] = useState(true);
@@ -8,20 +12,20 @@ function Home() {
   const [selectedDate, setSelectedDate] = useState(0);
 
   const days = [
-    { day: "SEN", date: 10 },
-    { day: "SEL", date: 11 },
-    { day: "RAB", date: 12 },
-    { day: "KAM", date: 13 },
-    { day: "JUM", date: 14 },
-    { day: "SAB", date: 15 },
-    { day: "MIN", date: 16 },
-    { day: "SEN", date: 17 },
-    { day: "SEL", date: 18 },
-    { day: "RAB", date: 19 },
-    { day: "KAM", date: 20 },
-    { day: "JUM", date: 21 },
-    { day: "SAB", date: 22 },
-    { day: "MIN", date: 23 },
+    { day: "SENIN", date: 10 },
+    { day: "SELASA", date: 11 },
+    { day: "RABU", date: 12 },
+    { day: "KAMIS", date: 13 },
+    { day: "JUMAT", date: 14 },
+    { day: "SABTU", date: 15 },
+    { day: "MINGGU", date: 16 },
+    { day: "SENIN", date: 17 },
+    { day: "SELASA", date: 18 },
+    { day: "RABU", date: 19 },
+    { day: "KAMIS", date: 20 },
+    { day: "JUMAT", date: 21 },
+    { day: "SABTU", date: 22 },
+    { day: "MINGGU", date: 23 },
   ];
 
   const menu = [
@@ -52,108 +56,38 @@ function Home() {
   ];
 
   return (
-    <div className="font-body">
-      <div className="top-0 pt-4 block sticky topbar opacity-100 bg-white">
+    <div className="font-body topbar">
+      <div className="top-0 pt-4 sticky bg-white">
+        {/* component navbar */}
         <NavBar setModal={(e) => setOpenModal(e)} />
-        <div className="ml-4 mt-6 mb-2 flex overflow-x-auto overflow-y-hidden text-center">
+
+        {/* component date selector */}
+        <div className="date-selector">
           {days.map((el, i) => (
-            <div
-              className={`ml-2 mr-2 ${
-                i === selectedDate && el.day !== "SAB" && el.day !== "MIN"
-                  ? "text-white bg-charcoal rounded-full py-2 px-3"
-                  : el.day === "SAB" || el.day === "MIN"
-                  ? "text-platinum bg-white rounded-full py-2 px-3"
-                  : "text-charcoal bg-white rounded-full py-2 px-3"
-              }`}
-              key={i}
-              onClick={() => setSelectedDate(i)}
-            >
-              <p className="text-xs leading-none">{el.day}</p>
-              <p className="font-semibold leading-none">{el.date}</p>
-            </div>
+            <Fragment key={i}>
+              <DateSelector
+                selectedDate={selectedDate}
+                setDate={(e) => setSelectedDate(e)}
+                day={el.day}
+                date={el.date}
+                index={i}
+              />
+            </Fragment>
           ))}
         </div>
         <hr className="bg-cultured" />
       </div>
+
       {/* lunch and dinner button section */}
-      <div className="mx-4 mt-4 mb-2 grid grid-cols-12">
-        <button
-          className={`col-span-6 py-2 focus:outline-none radius-first ${
-            lunch
-              ? "border border-solid border-charcoal bg-charcoal text-white"
-              : "border border-solid border-platinum text-platinum font-bold"
-          }`}
-          onClick={() => setLunch(!lunch)}
-        >
-          Lunch
-        </button>
-        <button
-          className={`col-span-6 py-2 focus:outline-none radius-second ${
-            lunch
-              ? "border border-solid border-platinum text-platinum font-bold"
-              : "border border-solid border-charcoal bg-charcoal text-white"
-          }`}
-          onClick={() => setLunch(!lunch)}
-        >
-          Dinner
-        </button>
-      </div>
+      <LunchDinner lunch={lunch} setMeal={(e) => setLunch(e)} />
+
       {/* menu section */}
-      <div className="mx-4 my-8">
-        <p className="text-charcoal text-xl font-bold mb-4">
-          Senin, 10 Agustus 2020
-        </p>
-        {menu.map((el, i) => (
-          <div
-            className="rounded-lg overflow-hidden border border-solid border-cultured shadow-outer mb-6"
-            key={i}
-          >
-            <img src={require(`../assets/images/${el.picture}`)} alt="Meal" />
-            <div className="m-4 text-charcoal">
-              <div className="flex items-center">
-                <p className="mr-1">4.5</p>
-                {[1, 2, 3, 4].map((_, i) => (
-                  <img
-                    src={require("../assets/images/star.svg")}
-                    className="w-3 ml-1"
-                    alt="star icon"
-                    key={i}
-                  />
-                ))}
-                <img
-                  src={require("../assets/images/quality.svg")}
-                  className="w-3 ml-1"
-                  alt="star icon"
-                />
-              </div>
-              <p className="font-medium text-xl">{el.name}</p>
-              <p className="text-silver text-sm my-1">{el.by}</p>
-              <div className="flex items-center my-4 justify-between">
-                <p className="text-lg font-medium">
-                  Rp {el.price.toLocaleString()}
-                </p>
-                <button
-                  className="bg-crayola text-white px-6 py-2 rounded-md flex text-lg focus:outline-none"
-                  onClick={() => setOpenCart(true)}
-                >
-                  ADD{" "}
-                  <svg
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="plus w-6 h-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Menu
+        days={days}
+        selectedDate={selectedDate}
+        menu={menu}
+        setOpenCart={(e) => setOpenCart(e)}
+      />
 
       {/* location modal */}
       <div
@@ -163,7 +97,7 @@ function Home() {
       >
         <div className="modal-content modal-animation bg-white">
           <div
-            className="text-charcoal mx-4 text-4xl text-right"
+            className="text-charcoal mx-4 text-4xl text-right cursor-pointer"
             onClick={() => setOpenModal(false)}
           >
             &times;
@@ -238,32 +172,7 @@ function Home() {
       </div>
 
       {/* Cart */}
-      <div
-        className={`fixed bottom-0 w-full ${openCart ? "block" : "hidden"} `}
-      >
-        <div className="flex justify-between bg-brown rounded-sm mx-2 px-4 py-2 text-white">
-          <div className="">
-            <p className="font-bold leading-none">5 Items | Rp 125.000</p>
-            <p className="text-sm">Termasuk ongkos kirim</p>
-          </div>
-          <div className="flex items-center">
-            <img src={require("../assets/images/cart.svg")} alt="Cart" />
-            <svg
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="chevron-right w-6 h-6"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className="cart-bg h-4" />
-      </div>
-      <div className="h-10" />
+      <Cart openCart={openCart} />
     </div>
   );
 }
