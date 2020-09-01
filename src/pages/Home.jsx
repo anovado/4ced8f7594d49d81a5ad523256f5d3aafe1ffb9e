@@ -6,6 +6,8 @@ import Cart from "../components/Cart";
 import ModalLocation from "../components/ModalLocation";
 import DateContainer from "../components/DateContainer";
 
+import HeadRoom from "react-headroom";
+
 function Home() {
   const [lunch, setLunch] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -94,8 +96,21 @@ function Home() {
       name: "Warmindo ",
       address: "Jalan Adi Soemarmo 20, RT 07 RW 06, Colomadu, Karanganyar",
     },
+    {
+      name: "Grand Mall ",
+      address: "Jalan Slamet Riyadi 200, Laweyan, Surakarta",
+    },
+    {
+      name: "Solo Square ",
+      address: "Jalan Slamet Riyadi 50, Laweyan, Surakarta",
+    },
+    {
+      name: "Grand Indonesia ",
+      address: "Jalan Soedirman 1, Kemayoran, Jakarta",
+    },
   ];
 
+  // filered data to search for places
   let filtered;
   if (keyword.length > 3) {
     filtered = locations.filter(
@@ -106,8 +121,8 @@ function Home() {
   }
 
   return (
-    <div className="font-body ">
-      <div className="top-0 pt-4 fixed bg-white w-full">
+    <div className="font-body bg-white">
+      <div className="header">
         {/* component navbar */}
         <NavBar setModal={(e) => setOpenModal(e)} location={location} />
 
@@ -121,7 +136,9 @@ function Home() {
       </div>
 
       {/* lunch and dinner button section */}
-      <LunchDinner lunch={lunch} setMeal={(e) => setLunch(e)} />
+      <HeadRoom upTolerance={10}>
+        <LunchDinner lunch={lunch} setMeal={(e) => setLunch(e)} />
+      </HeadRoom>
 
       {/* menu section */}
       <Menu

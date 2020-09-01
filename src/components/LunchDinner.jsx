@@ -4,12 +4,10 @@ function LunchDinner(props) {
   const { lunch, setMeal } = props;
 
   return (
-    <div className="mx-4 mt-36 mb-2 grid grid-cols-12">
+    <div className="mx-4 mb-2 mt-36 grid grid-cols-12">
       <button
         className={`col-span-6 py-2 focus:outline-none radius-first ${
-          lunch
-            ? "border border-solid border-charcoal bg-charcoal text-white"
-            : "border border-solid border-platinum text-platinum font-bold"
+          lunch ? "btn-active" : "btn-nonactive"
         }`}
         onClick={() => setMeal(true)}
       >
@@ -17,9 +15,7 @@ function LunchDinner(props) {
       </button>
       <button
         className={`col-span-6 py-2 focus:outline-none radius-second ${
-          lunch
-            ? "border border-solid border-platinum text-platinum font-bold"
-            : "border border-solid border-charcoal bg-charcoal text-white"
+          lunch ? "btn-nonactive" : "btn-active"
         }`}
         onClick={() => setMeal(false)}
       >
