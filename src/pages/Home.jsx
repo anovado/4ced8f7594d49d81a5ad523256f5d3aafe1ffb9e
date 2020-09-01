@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import LunchDinner from "../components/LunchDinner";
 import Menu from "../components/Menu";
@@ -14,6 +14,7 @@ function Home() {
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("Tokopedia Tower");
 
+  // sample data for dates
   const days = [
     { day: "SENIN", date: 10 },
     { day: "SELASA", date: 11 },
@@ -31,6 +32,7 @@ function Home() {
     { day: "MINGGU", date: 23 },
   ];
 
+  // sample data for meal menu
   const menu = [
     {
       picture: "carbonara.webp",
@@ -58,6 +60,7 @@ function Home() {
     },
   ];
 
+  // sample data for locations
   const locations = [
     {
       name: "Kulina",
@@ -102,7 +105,7 @@ function Home() {
           setDate={(e) => setSelectedDate(e)}
           days={days}
         />
-        <hr className="opacity-50" />
+        <hr className="opacity-75" />
       </div>
 
       {/* lunch and dinner button section */}
@@ -124,6 +127,8 @@ function Home() {
         setKeyword={(e) => setKeyword(e)}
         setLocation={(e) => setLocation(e)}
       />
+
+      <div className="h-12" />
 
       {/* Cart */}
       <Cart openCart={openCart} />

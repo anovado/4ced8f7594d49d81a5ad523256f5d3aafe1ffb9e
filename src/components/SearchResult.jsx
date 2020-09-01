@@ -6,7 +6,7 @@ function SearchResult(props) {
   return (
     <Fragment>
       <div className="result-container" onClick={() => setLocation(name)}>
-        <div className="col-span-2 mx-auto bg-cultured rounded-full py-2">
+        <div className="col-span-2 mx-auto bg-platinum rounded-full py-2">
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -29,7 +29,7 @@ function SearchResult(props) {
       <div className="result-container">
         <div className="col-span-2" />
         <div className="col-span-10 py-1">
-          <hr className="opacity-50" />
+          <hr className="opacity-75" />
         </div>
       </div>
     </Fragment>
