@@ -2,7 +2,7 @@
 
 ## Link deployed: [website](https://kulinaclone.netlify.app)
 
-This web is created for mobile, using iPhone X screen.
+This web is created for mobile with iPhone X screen as the benchmark.
 
 ### Technology stacks:
 - React
