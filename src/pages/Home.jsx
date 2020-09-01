@@ -58,6 +58,18 @@ function Home() {
       by: "by Kulina • Uptown Lunch",
       price: 35000,
     },
+    {
+      picture: "beef-stew.webp",
+      name: "Beef Stew",
+      by: "by Kulina • Uptown Lunch",
+      price: 35000,
+    },
+    {
+      picture: "chicken-salad.webp",
+      name: "Chicken and Vegetables Salad",
+      by: "by Kulina • Uptown Lunch",
+      price: 35000,
+    },
   ];
 
   // sample data for locations

@@ -3,7 +3,7 @@ import React from "react";
 function Cart(props) {
   return (
     <div
-      className={`fixed bottom-0 w-full ${
+      className={`fixed bottom-0 w-full cart-bg pb-4 ${
         props.openCart ? "block" : "hidden"
       } `}
     >
@@ -27,7 +27,6 @@ function Cart(props) {
           </svg>
         </div>
       </div>
-      <div className="cart-bg h-4" />
     </div>
   );
 }
