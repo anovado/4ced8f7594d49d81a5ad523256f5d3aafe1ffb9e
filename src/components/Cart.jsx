@@ -3,7 +3,7 @@ import React from "react";
 function Cart(props) {
   return (
     <div
-      className={`sticky bottom-0 w-full ${
+      className={`fixed bottom-0 w-full ${
         props.openCart ? "block" : "hidden"
       } `}
     >

@@ -4,7 +4,7 @@ function DateSelector(props) {
   const { selectedDate, setDate, date, day, index } = props;
 
   return (
-    <div
+    <li
       className={`ml-2 mr-2 ${
         index === selectedDate && day !== "SABTU" && day !== "MINGGU"
           ? "text-white bg-charcoal date-circle"
@@ -16,7 +16,7 @@ function DateSelector(props) {
     >
       <p className="text-xs leading-none">{day.slice(0, 3)}</p>
       <p className="font-semibold leading-none">{date}</p>
-    </div>
+    </li>
   );
 }
 export default DateSelector;

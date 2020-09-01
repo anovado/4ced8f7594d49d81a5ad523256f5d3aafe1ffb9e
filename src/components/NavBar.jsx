@@ -1,6 +1,8 @@
 import React from "react";
 
 function NavBar(props) {
+  const { location, setModal } = props;
+
   return (
     <div className="flex items-center mx-2 mb-4 text-charcoal">
       <svg
@@ -18,9 +20,9 @@ function NavBar(props) {
         <p className="text-silver text-xs leading-none">ALAMAT PENGANTARAN</p>
         <button
           className="flex text-xl items-center font-semibold focus:outline-none"
-          onClick={() => props.setModal(true)}
+          onClick={() => setModal(true)}
         >
-          Tokopedia Tower{" "}
+          {location}{" "}
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"

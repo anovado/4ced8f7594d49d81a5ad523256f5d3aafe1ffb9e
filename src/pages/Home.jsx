@@ -3,8 +3,8 @@ import NavBar from "../components/NavBar";
 import LunchDinner from "../components/LunchDinner";
 import Menu from "../components/Menu";
 import Cart from "../components/Cart";
-import DateSelector from "../components/DateSelector";
 import ModalLocation from "../components/ModalLocation";
+import DateContainer from "../components/DateContainer";
 
 function Home() {
   const [lunch, setLunch] = useState(true);
@@ -12,6 +12,7 @@ function Home() {
   const [openCart, setOpenCart] = useState(false);
   const [selectedDate, setSelectedDate] = useState(0);
   const [keyword, setKeyword] = useState("");
+  const [location, setLocation] = useState("Tokopedia Tower");
 
   const days = [
     { day: "SENIN", date: 10 },
@@ -90,26 +91,18 @@ function Home() {
   }
 
   return (
-    <div className="font-body topbar">
-      <div className="top-0 pt-4 sticky bg-white">
+    <div className="font-body ">
+      <div className="top-0 pt-4 fixed bg-white w-full">
         {/* component navbar */}
-        <NavBar setModal={(e) => setOpenModal(e)} />
+        <NavBar setModal={(e) => setOpenModal(e)} location={location} />
 
         {/* component date selector */}
-        <div className="date-selector">
-          {days.map((el, i) => (
-            <Fragment key={i}>
-              <DateSelector
-                selectedDate={selectedDate}
-                setDate={(e) => setSelectedDate(e)}
-                day={el.day}
-                date={el.date}
-                index={i}
-              />
-            </Fragment>
-          ))}
-        </div>
-        <hr className="bg-cultured" />
+        <DateContainer
+          selectedDate={selectedDate}
+          setDate={(e) => setSelectedDate(e)}
+          days={days}
+        />
+        <hr className="opacity-50" />
       </div>
 
       {/* lunch and dinner button section */}
@@ -129,6 +122,7 @@ function Home() {
         setOpenModal={(e) => setOpenModal(e)}
         filtered={filtered}
         setKeyword={(e) => setKeyword(e)}
+        setLocation={(e) => setLocation(e)}
       />
 
       {/* Cart */}

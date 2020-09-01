@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import SearchResult from "./SearchResult";
 
 function ModalLocation(props) {
-  const { openModal, setOpenModal, filtered, setKeyword } = props;
+  const { openModal, setOpenModal, filtered, setKeyword, setLocation } = props;
 
   return (
     <div
@@ -41,7 +41,11 @@ function ModalLocation(props) {
         {filtered
           ? filtered.map((el, i) => (
               <Fragment key={i}>
-                <SearchResult name={el.name} address={el.address} />
+                <SearchResult
+                  name={el.name}
+                  address={el.address}
+                  setLocation={(e) => setLocation(e)}
+                />
               </Fragment>
             ))
           : null}

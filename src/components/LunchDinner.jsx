@@ -2,7 +2,7 @@ import React from "react";
 
 function LunchDinner(props) {
   return (
-    <div className="mx-4 mt-4 mb-2 grid grid-cols-12">
+    <div className="mx-4 mt-36 mb-2 grid grid-cols-12">
       <button
         className={`col-span-6 py-2 focus:outline-none radius-first ${
           props.lunch
