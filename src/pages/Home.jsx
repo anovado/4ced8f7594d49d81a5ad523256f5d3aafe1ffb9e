@@ -4,12 +4,14 @@ import LunchDinner from "../components/LunchDinner";
 import Menu from "../components/Menu";
 import Cart from "../components/Cart";
 import DateSelector from "../components/DateSelector";
+import ModalLocation from "../components/ModalLocation";
 
 function Home() {
   const [lunch, setLunch] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const [selectedDate, setSelectedDate] = useState(0);
+  const [keyword, setKeyword] = useState("");
 
   const days = [
     { day: "SENIN", date: 10 },
@@ -55,6 +57,38 @@ function Home() {
     },
   ];
 
+  const locations = [
+    {
+      name: "Kulina",
+      address: "Jalan Tulodong Atas 28, Senayan, Kebayoran Baru, Jakarta",
+    },
+    {
+      name: "Kulinari",
+      address: "Ariobimo Sentral, Jalan Seadanya 1, Kebayoran Lama, Jakarta",
+    },
+    {
+      name: "Kurina",
+      address: "Jalan Seadanya Juga 2, Jakarta",
+    },
+    {
+      name: "Alterra",
+      address: "Jalan Tambora, Tidar, Malang",
+    },
+    {
+      name: "Warmindo ",
+      address: "Jalan Adi Soemarmo 20, RT 07 RW 06, Colomadu, Karanganyar",
+    },
+  ];
+
+  let filtered;
+  if (keyword.length > 3) {
+    filtered = locations.filter(
+      (el) =>
+        el.name.toLowerCase().includes(keyword.toLowerCase()) ||
+        el.address.toLowerCase().includes(keyword.toLowerCase())
+    );
+  }
+
   return (
     <div className="font-body topbar">
       <div className="top-0 pt-4 sticky bg-white">
@@ -90,86 +124,12 @@ function Home() {
       />
 
       {/* location modal */}
-      <div
-        className={`modal-location ${
-          openModal ? "show-modal block" : "hidden"
-        }`}
-      >
-        <div className="modal-content modal-animation bg-white">
-          <div
-            className="text-charcoal mx-4 text-4xl text-right cursor-pointer"
-            onClick={() => setOpenModal(false)}
-          >
-            &times;
-          </div>
-          <p className="text-xl text-charcoal mx-4 mt-2 pr-4 font-bold">
-            Cari makanan yang tersedia di lokasi kamu!
-          </p>
-          <div className="ml-4 my-4 w-11/12 inline-flex overflow-hidden border border-solid border-platinum rounded-sm items-center">
-            <svg
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="location-marker w-6 h-6 mx-2 text-crayola"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <input
-              className="p-2 w-11/12 focus:outline-none"
-              // type="search"
-              name="search"
-              placeholder="Masukkan lokasi anda"
-            />
-          </div>
-          <div className="ml-2 mr-4 my-4 grid grid-cols-12 items-center">
-            <div className="col-span-2 mx-auto bg-cultured rounded-full py-2">
-              <svg
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="location-marker w-6 h-6 mx-2 text-silver"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="col-span-10">
-              <p className="text-charcoal font-medium">Kulina</p>
-              <p className="text-silver text-sm mb-2">
-                Perum Gedongan Indah I No 19-20 Gedongan...
-              </p>
-              <hr />
-            </div>
-          </div>
-          <div className="ml-2 mr-4 my-4 grid grid-cols-12 items-center">
-            <div className="col-span-2 mx-auto bg-cultured rounded-full py-2">
-              <svg
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="location-marker w-6 h-6 mx-2 text-silver"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="col-span-10">
-              <p className="text-charcoal font-medium">Kulina</p>
-              <p className="text-silver text-sm mb-2">
-                Perum Gedongan Indah I No 19-20 Gedongan...
-              </p>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalLocation
+        openModal={openModal}
+        setOpenModal={(e) => setOpenModal(e)}
+        filtered={filtered}
+        setKeyword={(e) => setKeyword(e)}
+      />
 
       {/* Cart */}
       <Cart openCart={openCart} />

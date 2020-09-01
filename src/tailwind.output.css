@@ -23369,7 +23369,7 @@ video {
 }
 
 .modal-location {
-  position: fixed;
+  position: fixed !important;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -23377,6 +23377,7 @@ video {
   z-index: 2000;
   background: rgba(0, 0, 0, 0.3);
   opacity: 0;
+  /* overflow: hidden; */
   visibility: hidden;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
